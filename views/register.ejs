@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Register</title>
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css" integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossorigin="anonymous">
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+       <link rel="stylesheet" href="/styles/index.css">
+
+</head>
+<body>
+       <div>
+              <ul class="nav justify-content-center">
+                     <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                     </li>
+                     <li class="nav-item">
+                            <a class="nav-link active" href="#">Tournament</a>
+                     </li>
+                     
+                     <% if (username) { %>                                                               
+                            <li onClick={login} class="nav-item ">
+                                   <div class="dropdown">
+                                          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                 <%= username %> 
+                                          </button>
+                                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                 <a class="dropdown-item" href="/api/v1/logout">Logout</a>
+                                          </div>
+                                   </div>
+                            </li> 
+
+                     <% } else { %>
+                            <li onClick={login} class="nav-item discord_login ">
+                                   <i class="fa fa-discord fa-2x" aria-hidden="true"></i>
+                                   <span class="align-middle ml-1 ml-lg-6"><a href="/api/v1/auth">Login</a></span>
+                            </li>
+                     <% } %>
+            
+              </ul>
+              <div class="register">
+
+                     <% if (username) { %>                                                               
+                            <h3>Hi! <span style="font-weight: 600;"><%= username %>.</span> Enter Your Game Id And Chose a console. </h3>
+
+                            <br>
+                            <form action="/api/v1/game_info" method="POST">
+                                   <input type="text" style="padding: 5px;" name="game_id" id="" placeholder="Game Id">
+                                   <select name="console" style="padding: 7px" id="exampleFormControlSelect1">
+                                          <option>PS4</option>
+                                          <option>X Box</option>
+                                          <option>PC Windows</option>
+                                   </select>
+                                   <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>          
+                            <br>
+                     <% } else { %>
+                            <h1>SIGN UP WITH DISCORD</h1>
+                            <p>
+                            Connect your Discord account to sign up for tournaments.
+                            <br></br>
+                            Don't have a Discord account? You’ll be able to create one at the next step.
+                            </p>
+       
+                            <button class="discord_login">
+                                   <i class="fa fa-discord fa-2x" aria-hidden="true"></i>
+                                   <span class="align-middle ml-1 ml-lg-6"><a href="/api/v1/auth">Login</a></span>
+                            </button>
+                     <% } %>
+              </div>
+       </div>
+
+
+       <script src="bundle.js"></script>
+       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
